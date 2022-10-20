@@ -9,7 +9,7 @@ spec:
       repoURL: https://github.com/mikenholt/argocd-helm-test.git
       revision: HEAD
       files:
-      - path: "**/config.yaml"
+      - path: "config.yaml"
   template:
     metadata:
       name: ulm-stack
