@@ -1,0 +1,34 @@
+apiVersion: argoproj.io/v1alpha1
+kind: ApplicationSet
+metadata:
+  name: template
+  namespace: argocd
+spec:
+  generators:
+  - git:
+      repoURL: https://github.com/mikenholt/argocd-helm-test.git
+      revision: HEAD
+      files:
+      - path: "**/config.yaml"
+  template:
+    metadata:
+      name: ulm-stack
+    spec:
+      destination:
+        name: ''
+        namespace: '{{app_namespace}}'
+        server: '{{server_address}}'
+      source:
+        path: ''
+        repoURL: https://github.com/mikenholt/argocd-helm-test.git
+        targetRevision: HEAD
+        helm:
+          values: | 
+            {{app_values}}
+      project: default
+      syncPolicy:
+        automated:
+          prune: true
+          selfHeal: true
+        syncOptions:
+          - CreateNamespace=true
