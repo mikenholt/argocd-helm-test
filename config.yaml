@@ -1,7 +1,6 @@
 server_address: https://kubernetes.default.svc
 
 app_namespace: ulm
-path: apps-ulm/*
 
 
 # app_values: |
