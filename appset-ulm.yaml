@@ -19,7 +19,6 @@ spec:
         namespace: '{{app_namespace}}'
         server: '{{server_address}}'
       source:
-        path: ''
         repoURL: https://github.com/mikenholt/argocd-helm-test.git
         targetRevision: HEAD
         path: '{{path}}'
