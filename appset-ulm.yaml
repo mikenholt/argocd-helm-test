@@ -9,7 +9,7 @@ spec:
       repoURL: https://github.com/mikenholt/argocd-helm-test.git
       revision: HEAD
       files:
-      - path: "apps-ulm/*"
+      - path: "config.yaml"
   template:
     metadata:
       name: {{path.basename}}
@@ -20,7 +20,8 @@ spec:
       source:
         repoURL: https://github.com/mikenholt/argocd-helm-test.git
         targetRevision: HEAD
-        path: '{{path}}'
+        # path: '{{path}}'
+        path: "apps-ulm/loki"
         helm:
           values: | 
             {{app_values}}
