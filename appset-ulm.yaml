@@ -22,6 +22,7 @@ spec:
         path: ''
         repoURL: https://github.com/mikenholt/argocd-helm-test.git
         targetRevision: HEAD
+        path: '{{path}}'
         helm:
           values: | 
             {{app_values}}

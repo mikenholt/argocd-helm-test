@@ -1,9 +1,11 @@
 server_address: https://kubernetes.default.svc
 
 app_namespace: ulm
+path: apps-ulm/*
 
-app_values: |
-  image:
-    repository: ghcr.io/runatlantis/atlantis
-    tag: v0.19.8
-    pullPolicy: IfNotPresent
+
+# app_values: |
+#   image:
+#     repository: ghcr.io/runatlantis/atlantis
+#     tag: v0.19.8
+#     pullPolicy: IfNotPresent
