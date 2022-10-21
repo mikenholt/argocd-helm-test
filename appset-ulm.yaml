@@ -1,30 +1,26 @@
 apiVersion: argoproj.io/v1alpha1
 kind: ApplicationSet
 metadata:
-  name: template
+  name: ulm-stack
   namespace: argocd
 spec:
   generators:
   - git:
       repoURL: https://github.com/mikenholt/argocd-helm-test.git
       revision: HEAD
-      files:
-      - path: "config.yaml"
+      directories:
+      - path: "apps-ulm/*"
   template:
     metadata:
-      name: {{path.basename}}
+      name: '{{path.basename}}'
     spec:
       destination:
-        namespace: '{{app_namespace}}'
-        server: '{{server_address}}'
+        namespace: '{{path[0]}}'
+        server: 'https://kubernetes.default.svc'
       source:
         repoURL: https://github.com/mikenholt/argocd-helm-test.git
         targetRevision: HEAD
-        # path: '{{path}}'
-        path: "apps-ulm/loki"
-        helm:
-          values: | 
-            {{app_values}}
+        path: '{{path}}'
       project: default
       syncPolicy:
         automated:

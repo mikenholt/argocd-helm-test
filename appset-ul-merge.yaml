@@ -1,0 +1,44 @@
+apiVersion: argoproj.io/v1alpha1
+kind: ApplicationSet
+metadata:
+  name: ulm-stack2
+  namespace: argocd
+spec:
+  generators:
+    - merge:
+        mergeKeys:
+          - "path[1]" #doesn't work, collision
+        generators:
+          - git:
+              repoURL: https://github.com/mikenholt/argocd-helm-test.git
+              revision: HEAD
+              directories:
+              - path: "apps-ulm/*"
+          - git:
+              repoURL: https://github.com/mikenholt/argocd-helm-test.git
+              revision: HEAD
+              files:
+              - path: "config.yaml"
+  template:
+    metadata:
+      name: '{{path.basename}}'
+    spec:
+      destination:
+        namespace: '{{path[0]}}'
+        server: '{{server_address}}'
+      source:
+        repoURL: https://github.com/mikenholt/argocd-helm-test.git
+        targetRevision: HEAD
+        path: '{{path}}'
+        helm:
+          values: | 
+            {{global_values}}
+          # valueFiles:
+          # - '{{path}}/values.yaml'
+      project: default
+      syncPolicy:
+        automated:
+          prune: true
+          selfHeal: true
+        syncOptions:
+          - CreateNamespace=true

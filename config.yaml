@@ -1,10 +1,14 @@
 server_address: https://kubernetes.default.svc
 
+# Declare namespace for all apps
 app_namespace: ulm
 
+# Example global values
+global_values: |
+  test: true
 
-# app_values: |
-#   image:
-#     repository: ghcr.io/runatlantis/atlantis
-#     tag: v0.19.8
-#     pullPolicy: IfNotPresent
+# Example values specific to app
+loki_values: |
+  image:
+    repository: hello-world
+    tag: 1.0.0
