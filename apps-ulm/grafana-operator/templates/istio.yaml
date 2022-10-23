@@ -16,4 +16,4 @@ spec:
         host: grafana-service.apps-ulm.svc.cluster.local # <------- Change 'grafana-server.grafana' to `{service-name.namespace}`
         port:
           # number: 80
-          number: 9001 # <--------- Advertised port on the service
+          number: 3000 # <--------- Advertised port on the service
