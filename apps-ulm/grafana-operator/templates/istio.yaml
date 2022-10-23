@@ -8,7 +8,7 @@ spec:
   - istio-ingress/default
   hosts:
   # - grafana.pd.k8s.altamiracorp.com
-  - 'grafana.127.0.0.1'
+  - '*'
   http:
   - name: grafana-ui-http-route
     route:
