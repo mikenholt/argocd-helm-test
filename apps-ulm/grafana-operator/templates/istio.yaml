@@ -4,11 +4,11 @@ metadata:
   name: grafana-ui-route
 spec:
   gateways:
-  - istio-gateway/default
+  # - istio-gateway/default
+  - istio-ingress/default
   hosts:
   # - grafana.pd.k8s.altamiracorp.com
-  - '*'
-
+  - '1.0.0.127'
   http:
   - name: grafana-ui-http-route
     route:
